@@ -1,0 +1,21 @@
+name: Build APK
+on: workflow_dispatch   # run manually
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip openjdk-17-jdk zlib1g-dev libffi-dev libssl-dev libncurses5 libtinfo5 build-essential git
+          pip3 install --user buildozer
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Build debug APK
+        run: |
+          buildozer -v android debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: bin/*.apk
