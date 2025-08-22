@@ -1,0 +1,68 @@
+#:kivy 2.3.0
+
+<LinkLabel@Label+ButtonBehavior>:
+    underline: True
+    color: 0.1, 0.3, 1, 1
+    on_release: app.open_truecoder()
+
+BoxLayout:
+    orientation: "vertical"
+    padding: "20dp"
+    spacing: "12dp"
+    canvas.before:
+        Color:
+            rgba: 0.94, 0.96, 0.97, 1  # light bg
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "A/L Examination Countdown"
+        font_size: "22sp"
+        bold: True
+        color: 0, 0, 0, 1
+        size_hint_y: None
+        height: self.texture_size[1] + dp(6)
+
+    Label:
+        text: app.days_text
+        font_size: "48sp"
+        color: app.days_color
+        bold: True
+        size_hint_y: None
+        height: self.texture_size[1] + dp(10)
+
+    Label:
+        text: app.time_text
+        font_size: "24sp"
+        color: 0, 0, 0, 1
+        size_hint_y: None
+        height: self.texture_size[1] + dp(6)
+
+    Widget:
+        size_hint_y: None
+        height: "8dp"
+
+    Label:
+        text: "Stay Focused, You Can Do It 💪"
+        font_size: "16sp"
+        color: 0.3, 0.3, 0.3, 1
+        size_hint_y: None
+        height: self.texture_size[1] + dp(6)
+
+    # separator
+    Widget:
+        size_hint_y: None
+        height: "1dp"
+        canvas.before:
+            Color:
+                rgba: 0.75, 0.75, 0.75, 1
+            Rectangle:
+                size: self.width, dp(1)
+                pos: self.x, self.y
+
+    LinkLabel:
+        text: "Powered by Truecoder ⚡"
+        font_size: "14sp"
+        size_hint_y: None
+        height: self.texture_size[1] + dp(10)
